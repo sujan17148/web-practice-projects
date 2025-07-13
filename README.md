@@ -16,8 +16,8 @@ Most of these are **standalone apps** that showcase different frontend skills: D
 | 4 | 🧮 Calculator | Basic arithmetic operations with a clean UI |
 | 5 | 🔠 Hangman Game | Classic word guessing game with JavaScript logic |
 | 6 | 🧠 Memory Card Game | Flip and match card pairs — tests memory skills |
-| 7 | other basic projects | 
-| 8 |😂 Random Joke Generator | Fetches and displays random jokes on button click |
+| 7 | 🧰 other basic projects | These are small, focused projects that helped build core web development skills.
+| 8 | 😂 Random Joke Generator | Fetches and displays random jokes on button click |
 | 9 | ✊ Rock Paper Scissors | Simple RPS game against the computer |
 |10 | ❌ Tic Tac Toe | 2-player game with win/draw logic implemented |
 |11 | ✅ To-Do List | Add, mark, and delete tasks (with local storage) |
