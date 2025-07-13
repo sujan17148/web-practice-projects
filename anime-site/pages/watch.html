@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+</head>
+
+<body class="bg-primary dark:bg-dark-primary">
+<header class="h-fit "></header>
+<section class="watch">
+    <!-- header for anime title  -->
+    <div class="main-section mx-3 lg:mx-10 py-3  xl:flex xl:h-[800px]">
+        <div class="w-full lg:flex lg:flex-row-reverse  lg:max-h-[800px] xl:basis-[70%]">
+            <div class="video-container w-full max-h-full lg:basis-5/7">
+                <div class="video aspect-video w-full">
+                    <video controls class="h-full w-full object-contain "></video>
+                </div>
+                <div class="buttons py-10 max-h-32 bg-primary dark:bg-dark-primary">buttons</div>
+            </div>
+            
+            <div class="episode-container max-h-[650px] lg:max-h-full  overflow-y-auto relative text-textColor dark:text-dark-textColor font-medium bg-primary dark:bg-dark-accent dark:custom-shadow text-base w-full lg:basis-2/7 lg:border-r">
+                <h3 class="font-semibold text-lg py-1.5 my-auto px-4 sticky top-0 bg-primary dark:bg-dark-accent ">List of episodes</h3>
+                <div class="episodes-box h-full  px-4">
+                    <!-- episodes list here -->
+                </div>
+            </div>
+        </div>
+    
+        <div class="info-container flex flex-col mx-2 sm:mx-2 md:flex-row-reverse md:items-start md:justify-between md:mx-3 xl:basis-[30%] lg:mx-10 xl:flex-col-reverse xl:items-start  rounded-md p-3 gap-y-6 bg-primary dark:bg-dark-primary">
+            <!-- Rating Card -->
+            <div class="rating-card text-center text-textColor dark:text-dark-textColor flex flex-col justify-between mb-3 mx-auto md:mx-0 w-full max-w-[400px] md:basis-1/3 md:max-w-[350px] xl:max-w-[500px] xl:self-start rounded-md space-y-4 pt-5  custom-shadow bg-white dark:bg-dark-accent ">
+                <div class="flex justify-between items-center font-semibold mx-3 mb-4">
+                    <span class="rating "><i class="fa-solid fa-star text-yellow-400 mr-1.5"></i></span>
+                    <span>vote Now</span>
+                </div>
+                <span class="inline-block mx-3 mb-4">What do you think about this anime?</span>
+                <div class="reaction flex ">
+                    <div class="flex flex-col py-4 px-2 rounded-bl-md justify-center items-center basis-1/3 bg-secondary gap-y-3">
+                        <span class="text-2xl">😴</span>
+                        <span>Boring</span>
+                    </div>
+                    <div class="flex flex-col py-4 px-2 justify-center items-center basis-1/3 bg-secondary gap-y-3">
+                        <span class="text-2xl">😊</span>
+                        <span>Great</span>
+                    </div>
+                    <div class="flex flex-col py-4 px-2 justify-center items-center rounded-br-md basis-1/3 bg-secondary gap-y-3">
+                        <span class="text-2xl">🤩</span>
+                        <span>Amazing</span>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Anime Info Card -->
+            <div class="anime-info flex items-start gap-x-3 py-3 md:basis-2/3 xl:w-full xl:flex-col xl:items-start bg-primary dark:bg-dark-accent  rounded-md p-4">
+                <a href="/pages/watch.html?id=${data.mal_id}">
+                    <img class="aspect-[9/16] mb-3 w-20 max-w-[80px] sm:max-w-[100px] md:max-w-[120px] object-cover rounded-sm" src="/assets/images/animePic.webp" alt="anime Poster">
+                </a>
+                <div class="additional-info space-y-3 flex flex-col items-start">
+                    <h1 class="title text-2xl font-semibold text-textColor lg:text-4xl">title</h1>
+                    <div class="flex items-center gap-x-3 flex-wrap">
+                        <div class="info flex items-center gap-1 font-medium text-sm">
+                            <span class="rating rounded-sm bg-secondary dark:bg-dark-secondary text-primary dark:text-dark-primary py-0.5 px-1">R</span>
+                            <span class="quality rounded-sm bg-secondary text-primary dark:bg-dark-secondary dark:text-dark-primary py-0.5 px-1">HD</span>
+                            <span class="subtitles bg-[#B0E3AF] py-0.5 px-1 rounded-sm flex items-center gap-0.5">
+                                <i class="fa-solid fa-closed-captioning"></i>
+                                <span>25</span>
+                            </span>
+                            <span class="dubbed bg-[#E3B5CD] py-0.5 px-1 rounded-sm flex items-center gap-0.5">
+                                <i class="fa-solid fa-microphone"></i>
+                                <span>25</span>
+                            </span>
+                        </div>
+                        <span class="anime-type text-textColor font-medium text-[15px]">. tv</span>
+                        <span class="anime-duration text-textColor font-medium text-[15px]">. 24min</span>
+                    </div>
+                    <p class="overflow-ellipsis line-clamp-3"></p>
+                    <a class="inline-block py-2 px-4 bg-secondary mt-4 hover:bg-accent hover:scale-110 active:scale-95 text-primary rounded-sm" href="/pages/animeDetails.html">ViewDetails <i class="fa-solid fa-angle-right ml-1.5"></i></a>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</section>
+    
+        <div class="lower-section px-3 flex-wrap lg:flex-nowrap lg:px-10 flex gap-x-2.5 justify-between">
+            <div class="recommended py-5 w-full  h-fit lg:w-[70%] relative pb-20">
+                <h1 class="text-3xl text-secondary dark:text-dark-secondary font-medium mb-3 ">Recommended for you </h1>
+                <div class="cards flex flex-wrap w-full gap-2.5">
+                  <!-- recommended anime cards   -->
+               </div>
+               
+               
+               <div class="pagination absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2.5 text-primary dark:text-dark-primary  text-sm md:text-base font-medium   ">
+                <button class="left bg-secondary dark:bg-dark-secondary pointer rounded-md py-2.5 px-4 md:px-5 lg:px-6 flex gap-2 justify-center items-center hover:scale-110 active:scale-95 transition-all duration-300 ease-linear">
+                    <i class="fa-solid fa-angle-left"></i>
+                    Previous</button>
+                    <button class="right  bg-secondary dark:bg-dark-secondary pointer rounded-md py-2.5 px-4 md:px-5 lg:px-6 flex gap-2 justify-center items-center hover:scale-110 active:scale-95 transition-all duration-300 ease-linear">
+                        Next
+                        <i class="fa-solid fa-angle-right"></i></button>
+                   </div>
+               </div>    
+            
+               <div class="popular py-5  w-full pl-3 pr-10  lg:w-[30%] ">
+         
+           </div>
+           </div>
+
+
+           <!-- ==============footerSection==================== -->
+ <footer></footer>
+
+        <script src="/assets/js/watch.js"></script>
+</body>
+
+</html>

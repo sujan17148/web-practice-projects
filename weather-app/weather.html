@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+    <style>
+        :root{
+            --primaryColor:#1ec6ff;
+            --textColor:#041e26;
+            --backgroundColor:#f9fdfe;
+            --secondaryColor:#ffc526;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--backgroundColor);
+        }
+        .container{
+         width: 375px;
+         min-height: 50px;
+         background-color: var(--primaryColor);
+         border-radius: 5px;
+         padding: 20px 10px;
+        }
+        .searchbox{
+             width: 100%;
+             height: 45px;
+             display: flex;
+             justify-content: space-between;
+             align-items: start;
+        }
+        #searchBar{
+            flex-basis: 70%;
+            height: 100%;
+            border: none;
+            outline: none;
+            padding: 5px;
+            color: var(--textColor);
+            background-color: var(--primaryColor);
+            font-weight: bold;
+            font-weight: 1.2rem;
+        }
+        #searchBar::placeholder{
+            color: var(--textColor);
+            font-weight: bold;
+            font-weight: 1.2rem;
+            background-color: transparent;
+        }
+        .searchbutton{
+            background-color: var(--secondaryColor);
+            display: inline-block;
+            height: 100%;
+            flex: calc(30% - 10px);
+            border: none;
+            border-radius: 5px;
+            color: var(--textColor);
+            font-weight: bold;
+            font-size: 1.13rem;
+            cursor: pointer;
+            transition: transform 0.1s linear;
+        }
+        .searchbutton:hover{
+            transform: scale(1.05);
+        }
+        .searchbutton:active{
+            transform: scale(0.98);
+        }
+
+        .info{
+            display: none;
+        }
+            .weather{
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .weather > img{
+                width: 200px;
+                aspect-ratio: 1;
+            }
+            .weather > .temperature{
+                 font-weight: 550;
+                margin-bottom:5px;
+            }
+            .weather > .city{
+                font-weight: 550;
+                font-size: 1.5rem;
+            }
+            .weatherInfo{
+                display: flex;
+                justify-content: space-between;
+
+            }
+            .humidity, .windspeed{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .weatherpng{
+                height: 25px;
+            }
+            .humidityinner, .wind{
+                display: flex;
+                flex-direction: column;
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+            .errorbox{
+                display: none;
+                text-align: center;
+                padding-block: 15px 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="searchbox">
+            <input type="text" name="" placeholder="Enter city name" id="searchBar">
+            <button class="searchbutton">search</button>
+        </div>
+     <div class="info">
+        <div class="weather">
+            <img src="weatherimages/clear.png" alt="weatherimg">
+            <h1 class="temperature">temperature</h1>
+            <span class="city">city</span>
+   </div>
+   <div class="weatherInfo">
+       <div class="humidity">
+           <img class="weatherpng" src="weatherimages/humidity.png" alt="humiditypng">
+           <div class="humidityinner">
+               <span class="humiditydata">50%</span>
+           <span>Humidity</span>
+           </div>
+       </div>
+       <div class="windspeed">
+             <img class="weatherpng" src="weatherimages/wind.png" alt="wind image">
+             <div class="wind">
+               <span class="winddata">2km/h</span>
+               <span>WindSpeed</span>
+             </div>
+       </div>
+   </div>
+</div>
+<div class="errorbox"></div>
+     </div>
+</body>
+<script> 
+
+const images=[
+    {url:`weatherimages/clouds.png`},
+    {url:`weatherimages/drizzle.png`},
+    {url:`weatherimages/rain.png`},
+    {url:`weatherimages/snow.png`},
+    {url:`weatherimages/wind.png`},
+    {url:`weatherimages/clear.png`},
+]
+const searchBar=document.querySelector("#searchBar")
+const searchButton=document.querySelector(".searchbutton")
+const infoBox=document.querySelector(".info")
+const errorbox=document.querySelector(".errorbox")
+
+const setValue=(data)=>{
+    reset()
+    
+    document.querySelector(".wind > .winddata").textContent=`${data.wind.speed}KM/H`
+    document.querySelector(".humidityinner > .humiditydata").textContent=`${data.main.humidity}%`
+    document.querySelector(".weather > .city").textContent=data.name
+    document.querySelector(".weather > .temperature").textContent=`${data.main.temp}°C`    
+    setImage(data)
+}
+const fetchWeather=()=>{
+    try {
+        if(!searchBar.value){
+        throw new Error("Please! Enter a city name")
+    }
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchBar.value}&appid=bfcc4f96870fdb6cfbc917786535ddc2&units=metric`)
+        .then(response=>{
+        if(!response.ok) throw new Error('Please! Enter a valid city')
+        return response.json()
+})
+.then(data=> {
+    setValue(data)
+})
+.catch(error=> {
+    infoBox.style.display="none"
+errorbox.innerHTML=`<h1>${error}</h1>`
+errorbox.style.display="initial"
+})
+    } catch (error) {
+        searchBar.value=""
+        infoBox.style.display="none"
+errorbox.innerHTML=`<h1>${error}</h1>`
+errorbox.style.display="initial"  
+    }
+}
+
+searchButton.addEventListener("click",fetchWeather)
+document.body.addEventListener("keydown",(e)=>{
+if(e.key==="/"){
+ searchBar.focus()
+}
+if(e.key.toLowerCase()=="enter"){
+    fetchWeather()
+}
+})
+
+function reset(){
+    searchBar.value=""
+    infoBox.style.display="initial"
+    errorbox.style.display="none"
+}
+
+function setImage(data){
+let weather=data.weather[0].main.toLowerCase()
+console.log(weather)
+images.forEach(element=>{
+    if(element.url.includes(weather)){
+    document.querySelector(".weather > img").setAttribute("src", element.url)
+    }
+})
+}
+
+</script>
+</html>

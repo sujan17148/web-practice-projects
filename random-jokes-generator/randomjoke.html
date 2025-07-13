@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random JOke Generator</title>
+    <style>
+        :root{
+            --primaryColor:#ff66b2;
+            --secondaryColor:#92c6e5;
+            --backgroundColor:#fffcfd;
+            --textcolor:#1d0b14ea;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--backgroundColor);
+        }
+        .container{
+            width: 450px;
+            min-height: 300px;
+            background-color: var(--secondaryColor);
+            color: var(--textcolor);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding:5px 15px;
+            gap: 10px;
+        }
+        .container> .emoji{
+            display: inline-block;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 3rem;
+        }
+        .container > .joke{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-size: 1.13rem;
+             font-weight: 550;
+        }
+        .container> .generate{
+            height: 50px;
+            aspect-ratio: 3.5;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--primaryColor);
+            color: var(--textcolor);
+            font-weight: bold;
+            font-size: 1.12rem;
+            align-self: end;
+            cursor: pointer;
+            transition: transform 0.1s linear;
+        }
+      
+        .container> .generate:hover{
+            transform: scale(1.05);
+        }
+        .container > .generate:active{
+            transform: scale(0.98);
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="emoji"> 😂</p>
+        <span class="joke"></span>
+        <button class="generate">Generate joke</button></div>
+</body>
+<script>
+    const joke=document.querySelector(".joke")
+    const generate=document.querySelector(".generate")
+    
+
+const fetchJoke=()=>{
+    fetch('https://v2.jokeapi.dev/joke/Any')
+.then(response=>{
+    if(!response.ok) throw new Error("network error")
+    return response.json()
+})
+.then(data=>{
+    if(!data.setup && !data.delivery) throw new Error('something went wrong \n try again')
+    else  joke.textContent=`${data.setup} ${data.delivery}`
+}
+)
+.catch(error=>{
+    joke.textContent="Oops something went wrong⚠️"
+console.log(error)
+})
+
+}
+fetchJoke()
+generate.addEventListener("click", fetchJoke)
+
+</script>
+</html>

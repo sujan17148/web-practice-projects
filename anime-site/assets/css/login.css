@@ -1,0 +1,139 @@
+:root {
+    --primaryColor: #f9f9f9;
+    --secondaryColor: #ff6347;
+    --accentColor: #ff4757;
+    --textcolor: #333;
+    --errorColor: #d32f2f;
+    --successColor: #2e7d32;
+}
+.dark{
+    --primaryColor:#242428;
+    --secondaryColor:#FFDD95;
+    --accentColor:#3A3A3E;
+    --textColor:#fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--textColor);
+    font-family: Arial, sans-serif;
+}
+
+a {
+    color: var(--textColor);
+    text-decoration: none;
+}
+
+form {
+    background: var(--primaryColor);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--textColor);
+}
+
+form label {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+form .formgroup {
+    text-align: left;
+    position: relative;
+}
+
+form .formgroup input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--textColor);
+    outline: none;
+    margin-block: 5px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s ease-in-out;
+}
+.checkbox-container{
+    padding-inline: 15px;
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+input.error {
+    border: 2px solid var(--errorColor);
+    background: rgba(255, 0, 0, 0.1);
+}
+
+input.correct:focus {
+    border: 2px solid var(--successColor);
+}
+
+form .formgroup .errormsg {
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    font-size: 0.85rem;
+    color: var(--errorColor);
+    padding: 3px 5px;
+    font-weight: bold;
+}
+.formgroup  i:last-child{
+    position:absolute;
+    top: 45%;
+    right: 3%;
+    transform: translate(0,-40%);
+    color: var(--textColor);
+    font-size: 0.98rem;
+    cursor: pointer;
+    
+    }
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: var(--secondaryColor);
+    border: none;
+    margin-top: 10px;
+    border-radius: 6px;
+    color: var(--textColor);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: var(--accentColor);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.signup {
+    display: inline-block;
+    margin-block: 20px 0;
+    color: var(--textColor);
+}
+
+.signup a:hover {
+    color: rgba(170, 170, 219, 0.7);
+    text-decoration: underline;
+}

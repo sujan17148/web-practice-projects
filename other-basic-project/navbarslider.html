@@ -1,0 +1,88 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            *{
+                margin: 0;padding: 0;box-sizing: border-box;
+            }
+        ul{
+            position: relative;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+
+        }
+        ul>li{
+            position: relative;
+            cursor: pointer;
+        }
+        ul::after{
+            content: "";
+            position: absolute;
+            text-align: center;
+            left: var(--left);
+            width: var(--width);
+            bottom: -2px;
+            height: 2px;
+            background-color: red;
+            transition: all 0.1s linear;
+        }
+        
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li class="active">home1</li>
+            <li>home2</li>
+            <li>home3</li>
+            <li>home4</li>
+            <li>home5</li>
+        </ul>
+    </body>
+    <script>
+        const ul = document.querySelector("ul");
+        const ulRect = ul.getBoundingClientRect();
+        (function setLineForActive(){
+            let activeLine=document.querySelector(".active")
+            let activeLineRect=activeLine.getBoundingClientRect()
+            console.log(activeLineRect.left)
+        ul.style.setProperty("--width",`${activeLineRect.width}px`)
+        ul.style.setProperty("--left", `${activeLineRect.left - ulRect.left}px`)
+        })()
+        function slide(e){
+    /*
+    * getBoundingClientRect() returns a DOMRect object 
+    * containing the position and size of an element relative to the viewport.
+    * The properties include:
+    * - top: Distance from the top of the viewport to the element's top edge
+    * - right: Distance from the left of the viewport to the element's right edge
+    * - bottom: Distance from the top of the viewport to the element's bottom edge
+    * - left: Distance from the left of the viewport to the element's left edge
+    * - width: Width of the element
+    * - height: Height of the element
+    *
+    * Example access:
+    * const rect = e.target.getBoundingClientRect();
+    * const elementLeft = rect.left;   // Access left position
+    * const elementWidth = rect.width;  // Access width
+    */
+
+    if(e.target.tagName==="LI"){
+        let  rect=e.target.getBoundingClientRect()
+        let leftPosition=rect.left - ulRect.left
+        let width=rect.width
+
+        ul.style.setProperty("--left",`${leftPosition}px`)
+        ul.style.setProperty("--width",`${width}px`)
+
+    }
+        
+        }
+
+        document.querySelector("ul").addEventListener("click",slide)
+    </script>
+    </html>

@@ -1,0 +1,16 @@
+<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <line stroke-width="6" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_4" y2="391" x2="143.5" y1="149" x1="142.5" stroke="#000" fill="none"/>
+  <line stroke-width="7" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_5" y2="150" x2="293.5" y1="151" x1="139.5" stroke="#000" fill="none"/>
+  <line stroke-width="7" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_6" y2="186" x2="290.5" y1="149" x1="289.5" stroke="#000" fill="none"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_7" y2="386" x2="351.5" y1="388" x1="140.5" stroke-width="7" stroke="#000" fill="none"/>
+  <ellipse ry="30.5" rx="29.5" id="svg_9" cy="213.5" cx="290" stroke-width="7" stroke="#000" fill="none"/>
+  <path id="svg_12" d="m-310.5,301l69.5,179" opacity="NaN" stroke-width="7" stroke="#000" fill="none"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_13" y2="310" x2="289.5" y1="247" x1="290.5" stroke-width="7" stroke="#000" fill="none"/>
+  <line transform="rotate(-1 274.5 269.5)" stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_14" y2="277.06428" x2="260.55299" y1="261.93572" x1="288.44701" stroke-width="7" fill="none"/>
+  <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_15" y2="279" x2="320.5" y1="261" x1="290.5" stroke-width="7" fill="none"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_16" y2="324" x2="262.5" y1="306" x1="288.5" stroke-width="7" stroke="#000" fill="none"/>
+ </g>
+</svg>

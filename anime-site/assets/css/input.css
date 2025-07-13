@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme {
+    --color-primary: #f9f9f9;
+    --color-secondary: #ff4757; 
+    --color-accent: #8B0000;
+    --color-textColor: #333;
+}
+@theme{
+    --color-dark-primary:#242428;
+    --color-dark-secondary:#FFDD95;
+    --color-dark-accent:#3A3A3E;
+    --color-dark-textColor:#fff;
+}
+.hide-scrollbar{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar{
+    display: none;
+}
+
+.custom-anime-card {
+    @apply bg-dark-primary 
+    basis-[calc(50%-5px)] 
+           aspect-[9/16]
+           sm:basis-[calc(33.333%-6.667px)]
+           md:basis-[calc(25%-7.5px)]
+           lg:basis-[calc(20%-8px)]
+           xl:basis-[calc(16.666%-8.333px)]
+           2xl:basis-[calc(12.5%-8.75px)]
+           object-cover         
+  }
+  .custom-shadow{
+@apply shadow-[5px_5px_10px_rgba(0,0,0,0.1),-5px_-5px_10px_rgba(255,255,255,_0.7)] dark:shadow-[5px_5px_10px_rgba(255,255,255,0.1),-5px_-5px_10px_rgba(0,0,0,_0.7)];
+  }
+  
+ .custom-hover{
+    @apply hover:scale-102 active:scale-95 transition-transform duration-300 ease-linear
+ }
+
+.custom-page-button{
+    @apply  bg-primary text-textColor dark:bg-dark-primary dark:text-dark-textColor
+     w-10 h-10 rounded-md flex items-center 
+     justify-center hover:text-primary dark:hover:text-dark-primary hover:bg-secondary dark:hover:bg-dark-secondary transition-all
+}
+.custom-currentPage{
+    @apply font-medium bg-secondary text-primary dark:bg-dark-secondary dark:text-dark-primary
+}
+
+.custom-recommended-anime-card {
+    @apply bg-dark-primary
+    basis-[calc(50%-0.5rem)] /* Mobile: 2 cards */
+    sm:basis-[calc(33.333%-0.667rem)] /* Small: 3 cards */
+    md:basis-[calc(25%-0.75rem)] /* Medium: 4 cards */
+    lg:basis-[calc(20%-0.8rem)] /* Large: 5 cards */
+    rounded-md
+    aspect-[9/16]
+    object-cover;
+  }

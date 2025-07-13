@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Site</title>
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="bg-primary dark:bg-dark-accent">
+    <form id="loginForm">
+        <h2>Login Form</h2>
+        
+        <div class="formgroup">
+            <label for="gmail">Email</label>
+            <input type="gmail" id="gmail" >
+            <span class="errormsg"></span>
+            
+        </div>
+
+        <div class="formgroup">
+            <label for="password">Password</label>
+            <input type="password" id="password" >
+            <span class="errormsg"></span>
+            <i class="fa-solid fa-eye"></i>
+        </div>
+        <div class="checkbox-container">
+            <input checked type="checkbox" name="" id="checkbox">
+            <label for="checkbox">Remember me</label>
+        </div>
+        <button type="submit">Login</button>
+
+        <p class="signup">Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </form>
+
+    <script  src="/assets/js/login.js"></script>
+</body>
+</html>

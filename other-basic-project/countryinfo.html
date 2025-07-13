@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Info</title>
+    <style>
+        :root{
+            --primaryColor:#ff66b2;
+            --secondaryColor:#92c6e5;
+            --backgroundColor:#fffcfd;
+            --textcolor:#1d0b14ea;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--backgroundColor);
+        }
+        .container{
+            width: 450px;
+            min-height: 50px;
+            background-color: var(--secondaryColor);
+            color: var(--textcolor);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding:5px 10px;
+            gap: 10px;
+        }
+
+        .container >.searchbar{
+            margin-top: 10px;
+            flex: 1 0 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 45px;
+            gap: 15px;
+
+            .searchbox{
+                flex: 1;
+                border: none;
+                outline: none;;
+                border-radius: 5px;
+                background-color: var(--secondaryColor);
+                color: var(--textcolor);
+                font-weight: bold;
+                font-size: 1.033rem;
+
+                &::placeholder{
+                    color: var(--textcolor);
+                    font-weight: 550;
+                }
+               
+            }
+
+            .search{
+                display: inline-block;
+                width: 100px;
+                height: 100%;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: var(--primaryColor);
+            color: var(--textcolor);
+            font-weight: bold;
+            transition: transform 0.1s linear;
+
+             &:hover{
+                transform: scale(1.05);
+             }
+             &:active{
+                transform: scale(0.98);
+             }
+
+            }
+
+        }
+        .container >.flag{
+            flex: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px 10px;
+            margin-bottom: 10px;
+
+            span:first-child{
+                width: 150px;
+                aspect-ratio: 1;
+                font-size: 6rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            span:last-child{
+                margin-top: -30px;
+                font-weight: bold;
+                font-size: 1.23rem;
+                color: lighter(var(--textcolor));
+            }
+
+            
+        }
+
+        .container > .info{
+           flex: 100%;
+           display: flex;
+           justify-content: center;
+           flex-direction: column;
+           gap: 5px;
+        }
+        
+        .mapTag{
+            font-weight: bold;
+            text-transform: capitalize;
+            text-decoration: none;
+        }
+        .container .error{
+            display: none;
+            color: var(--textcolor);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="searchbar">
+            <input type="search" class ="searchbox" placeholder="Type a country Name" name="" id="">
+            <button class="search">Search</button>
+        </div>
+          <div class="flag">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="info">
+        </div>
+        <div class="error">OOps something went wrong⚠️
+        </div>
+    </div>
+</body>
+<script>
+    let country=document.querySelector(".searchbox")
+    let countryInformation=document.querySelector(".info")
+    let flag=document.querySelector(".flag")
+    let errorbox=document.querySelector(".error")
+    const fetchData=()=>{
+        if(country.value){
+            fetch(`https://restcountries.com/v3.1/name/${country.value.trim()}?fullText=true`)
+            .then(response=>{
+                errorbox.style.display="none"
+                if(!response.ok)throw new Error("network error")
+                return response.json()
+            })
+            .then(data=> setValue(data))
+            .catch(error=>{
+                  reset()
+                  errorbox.style.display="initial"
+
+            }
+            )
+        }
+        
+    }
+    function setValue(data){
+        reset()
+        flag.style.display="flex"
+document.querySelector(".flag > span:first-child").textContent=data[0].flag
+
+document.querySelector(".flag > span:last-child").textContent=data[0].name.common
+    
+
+    let capital=document.createElement("span")
+    capital.textContent=`capital: ${data[0].capital[0]}`
+
+    let population=document.createElement("span")
+    population.textContent=`population:${data[0].population}`
+
+    let language=document.createElement("span")
+    language.textContent=`language: ${Object.values(data[0].languages)}`// object.values returns the value of that object passed there if we try to fetch directly it dont works because for nepal key is nep and for india key is ind and so on for different countries
+
+    let currencies=Object.values(data[0].currencies)
+    let currency=currencies[0]
+    let currencyHolder=document.createElement("span")
+    currencyHolder.textContent=`currency: ${currency.name}`
+
+    let symbol=document.createElement('span')
+    symbol.textContent=`currencySymbol: ${currency.symbol}`
+
+    let map=document.createElement("a")
+    map.className="mapTag"
+    map.setAttribute("href", `${data[0].maps.googleMaps}`)
+    map.textContent="go to map"
+
+
+    countryInformation.append(capital)
+    countryInformation.append(population)
+    countryInformation.append(language)
+    countryInformation.append(currencyHolder)
+    countryInformation.append(symbol)
+    countryInformation.append(map)
+    }
+
+    document.querySelector(".search").addEventListener("click", fetchData)
+
+    document.body.addEventListener("keydown", (e)=>{
+        if(e.key==="/"){
+            country.focus()
+        }
+        if(e.key.toLocaleLowerCase()=="enter"){
+            fetchData()
+        }
+    })
+
+    function reset(){
+        country.value=""
+        flag.style.display="none"
+        countryInformation.innerHTML=""
+    }
+</script>
+</html>

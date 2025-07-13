@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momory Card Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .maincontainer {
+            position: relative;
+            width: 800px;
+            padding: 15px 15px 45px 15px;
+        }
+
+        .cardcontainer {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .restart {
+            position: absolute;
+            bottom: -19px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 45px;
+            width: 158px;
+            border: none;
+            background-color: #694C8C;
+            color: whitesmoke;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 29px;
+            transition: transform 0.1s linear;
+            cursor: pointer;
+        }
+
+        .restart:hover {
+            transform: translateX(-50%) scale(1.01);
+        }
+
+        .restart:active {
+            transform: translateX(-50%) scale(0.9);
+        }
+
+        .container {
+            flex-basis: calc(25% - 10px);
+            perspective: 1000px;
+            aspect-ratio: 1;
+        }
+
+        .box {
+            position: relative;
+            transform-style: preserve-3d;
+            height: 100%;
+            width: 100%;
+            transition: transform 0.35s linear;
+
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        .flip .box {
+            transform: rotateY(180deg);
+        }
+
+        .front,
+        .back {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            backface-visibility: hidden;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 5px;
+
+        }
+
+        .front {
+            background-color: whitesmoke;
+            position: relative;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .front::after {
+            content: "♠";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            text-align: center;
+            font-size: 6rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .back {
+            transform: rotateY(180deg);
+        }
+
+        .back>img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .gameover {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 40px 15px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            width: 300px;
+            font-family: 'Arial', sans-serif;
+            z-index: 5;
+        }
+
+        .gameover h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="maincontainer">
+        <div class="gameover">
+            <h1>Game over</h1>
+        </div>
+        <div class="cardcontainer"></div>
+        <button class="restart">Restart</button>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

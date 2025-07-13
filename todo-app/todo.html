@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo list</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <style>
+        
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html, body{
+   height: 100%;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center; 
+   background-color: #f5f5f5;
+}
+.taskcontainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    padding-block: 15px 30px;
+    min-height: 100px;
+    width: 400px;
+    background-color: #ffffff; /* White container */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+.addbutton{
+    position: absolute;
+    bottom: -19px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 45px;
+    width: 158px;
+    border: none;
+    background-color: #694C8C;
+    color: whitesmoke;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 29px;
+    transition: transform 0.1s linear;
+    cursor: pointer;
+}
+.addbutton:hover{
+    transform: translateX(-50%) scale(1.01);
+}
+.addbutton:active{
+transform:translateX(-50%)  scale(0.9);
+}
+
+.task{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+    height: 45px;
+    min-width: 190px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.taskdiv{
+    width: 80%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+padding: 0 20px;
+background-color: #fff;
+border-radius: 5px;
+margin-block: 5px;
+height: 40px;
+box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    transition: 0.2s ease-in-out;
+}
+.taskdiv:hover {
+    transform: scale(1.02);
+}
+.taskdiv>div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.taskdiv>p {
+    font-size: 1rem;
+    color: #333;
+}
+.taskdiv>i{
+    color: red;
+    cursor: pointer;
+    transition: transform 0.1s linear;
+}
+.taskdiv>i:hover{
+transform: scale(1.1);
+}
+.taskdiv>i:active{
+    transform: scale(0.9);
+}
+.check {
+    appearance: none; /* Removes default checkbox */
+    width: 18px;
+    height: 18px;
+    border: 2px solid #694C8C;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.check:checked {
+    background-color: #694C8C;
+    border-color: #694C8C;
+}
+
+.check:checked::before {
+    content: "✔";
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="taskcontainer">
+            <input class="task" type="text">
+        <button class="addbutton">Add Task</button>
+    </div>
+    
+
+    <script>
+        const container=document.querySelector(".taskcontainer")
+        const taskButton=document.querySelector(".addbutton")
+        const taskInput=document.querySelector(".task")
+        
+        let flag=false
+        const taskAdded=(taskText)=>{
+            console.log("hello")
+            let task=taskInput.value
+            const taskDiv=document.createElement("div")
+            taskDiv.className="taskdiv"
+            taskDiv.innerHTML=`<div>
+            <input class="check"type="checkbox" >
+            <p>${taskText}</p>
+           </div>
+            <i class="fa-solid fa-trash"></i>`
+        container.appendChild(taskDiv)
+//using event delegation which means instead of attatching event listener to each child we attach it to parent and check wheather it is correct child or not
+container.addEventListener("click",(e)=>{
+
+if(e.target.classList.contains("fa-trash")){
+    e.target.parentElement.remove()
+}
+if(e.target.classList.contains("check")){
+    const p=e.target.closest(".taskdiv").querySelector("p")
+    //only selection closest taskdiv p if we directly select p then we will select all of the p 
+    if(e.target.checked){
+p.style.textDecoration="line-through"
+    }
+    else{
+        p.style.textDecoration="none"
+    }
+}
+})
+
+
+        }
+        const addTask =(event) => {
+               if(!flag){
+                taskInput.style.display="inline-block"
+                taskInput.focus()
+               }
+               else{
+                    if(taskInput.value){
+                        taskAdded(taskInput.value.trim())
+                     taskInput.style.display="none"
+                     taskInput.value=""
+                    }
+               }
+               flag=!flag
+           }
+
+
+        taskButton.addEventListener("click", addTask)
+        taskInput.addEventListener("keydown",(e)=>{
+            if(e.key.toLowerCase()=="enter"){
+                if(taskInput.value){
+                        taskAdded(taskInput.value.trim())
+                     taskInput.style.display="none"
+                     taskInput.value=""
+                    }
+            }
+        })
+        
+        
+    </script>
+</body>
+</html>

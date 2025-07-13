@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+</head>
+
+<body class="overflow-x-hidden bg-primary dark:bg-dark-primary ">
+    
+    <header></header>
+
+    <section class="overflow-hidden min-h-[500px] relative" id="details-section">
+        <div class=" loader absolute top-1/2 left-1/2 -translate-1/2">
+            <i class="fa-solid fa-spinner fa-spin text-dark-primary dark:text-primary  animate-spin text-4xl"></i>
+        </div>
+    </section>
+
+ 
+
+   <div class="lower-section px-3 flex-wrap lg:flex-nowrap lg:px-10 flex gap-x-2.5 justify-between">
+    <div class="recommended py-5 w-full  h-fit lg:w-[70%] relative min-h-[700px]  pb-20">
+        <h1 class="text-3xl text-secondary dark:text-dark-secondary font-medium mb-3 ">Recommended for you </h1>
+        <div class="cards w-full flex flex-wrap gap-2.5 ">
+          <!-- recommended anime cards   -->
+          <div class=" loader absolute top-1/2 left-1/2 -translate-1/2">
+            <i class="fa-solid fa-spinner fa-spin text-dark-primary dark:text-primary  animate-spin text-4xl"></i>
+        </div>
+       </div>
+       
+       
+       <div class="pagination absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2.5 text-primary dark:text-dark-primary text-sm md:text-base font-medium   ">
+        <button class="left bg-secondary dark:bg-dark-secondary pointer rounded-md py-2.5 px-4 md:px-5 lg:px-6 flex gap-2 justify-center items-center hover:scale-110 active:scale-95 transition-all duration-300 ease-linear">
+            <i class="fa-solid fa-angle-left"></i>
+            Previous</button>
+            <button class="right  bg-secondary dark:bg-dark-secondary pointer rounded-md py-2.5 px-4 md:px-5 lg:px-6 flex gap-2 justify-center items-center hover:scale-110 active:scale-95 transition-all duration-300 ease-linear">
+                Next
+                <i class="fa-solid fa-angle-right"></i></button>
+           </div>
+       </div>    
+    
+       <div class="popular py-5  w-full pl-3 lg:w-[30%] ">
+ 
+   </div>
+   </div>
+
+   <!--================ streaming-site-popup================= -->
+<div class="streaming-site-popup  rounded-md hidden  absolute top-1/2 left-1/2 -translate-1/2 w-screen max-w-[500px] h-[200px] bg-primary dark:bg-dark-accent text-textColor dark:text-dark-textColor font-medium lg:font-semibold text-lg  z-50">
+    <div class="links flex flex-col justify-center items-center gap-y-2.5 h-full py-3">
+        <!-- =====streaminglinks======== -->
+    </div>
+    <button class="fa-solid fa-x text-base absolute top-2 right-2 "></button>
+</div>
+<!-- ==============footerSection==================== -->
+<footer></footer>
+        <script src="/assets/js/animeDetails.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+</head>
+
+<body class="bg-primary dark:bg-dark-primary">
+    <header></header>
+
+
+    <div class="animes px-3 lg:px-10 b-3 mb-3 " >
+        <div class="topsection flex  justify-between items-center mt-2">
+            <h3 class="font-medium md:font-semibold text-secondary dark:text-dark-secondary text-2xl my-3">Animes</h3>
+            <div class="dropdown ponter  relative">
+                  <div class="selected ">
+                    <span class="font-medium text-textColor dark:text-dark-textColor">Popular</span>
+                    <i class="fa-solid fa-angle-right ml-1.5 text-textColor dark:text-dark-textColor transition-transform duration-300 ease-linear"></i>
+                  </div>
+                  <div class="options rounded-md absolute  right-0 top-full z-10 w-[200px] hidden bg-primary dark:bg-dark-primary text-textColor dark:text-dark-textColor custom-shadow">
+                    <a href="popularity" class="block px-3 py-3 border-b-2 border-b-gray-500 ">Popular</a>
+                    <a href="score" class="block py-3 px-3 border-b-2 border-b-gray-500">Top Rated</a>
+                    <a href="favorites" class="block py-3 px-3 border-b-2 border-b-gray-500">Favourite</a>
+                    <a href="episodes" class="block py-3 px-3 border-b-2 border-b-gray-500">Longest Running</a>
+                    <a href="start_date" class="block py-3 px-3 border-b-2 border-b-gray-500">Recent</a>
+                    <a href="end_date" class="block py-3 px-3">oldest</a>
+                  </div>
+              </div>
+            
+          </div>
+
+        <div class="anime-container  flex gap-2.5  w-full  flex-wrap relative min-h-screen ">
+            <!-- anime card container  -->
+            <div class=" loader absolute top-1/2 left-1/2 -translate-1/2">
+                <i class="fa-solid fa-spinner fa-spin text-dark-primary dark:text-primary  animate-spin text-4xl"></i>
+            </div>
+    </div>
+    </div>
+
+    <div class="pagination h-14 flex justify-center items-center gap-2.5 px-4 rounded-md">
+        <button class="custom-page-button fa-solid fa-angles-left"></button>
+        <button class="custom-page-button fa-solid fa-angle-left"></button>
+        <button class="custom-page-button page-number dark:bg-dark-secondary dark:text-dark-textColor"></button>
+        <button class="custom-page-button page-number dark:bg-dark-secondary dark:text-dark-textColor"></button>
+        <button class="custom-page-button page-number dark:bg-dark-secondary dark:text-dark-textColor"></button>
+        <button class="custom-page-button page-number dark:bg-dark-secondary dark:text-dark-textColor"></button>
+        <button class="custom-page-button fa-solid fa-angle-right"></button>
+        <button class="custom-page-button fa-solid fa-angles-right"></button>
+    </div>
+
+<!-- ==============footerSection==================== -->
+<footer></footer>
+
+    <script type="module" src="/assets/js/popular.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #main{  
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0 15px 15px;
+            gap: 10px;
+            flex-wrap: wrap;
+            background-color: pink;
+        }
+        .container{
+            flex: 1 0 100%;
+            position: relative;
+            width: 500px;
+            aspect-ratio: 1;
+            padding: 10px;
+            gap: 10px;
+        }
+        .box{
+            position: absolute;
+            width:calc(33% - 10px);
+            aspect-ratio: 1;
+            background-color: lightseagreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition:  linear 1s;
+        }
+        .button{
+            width: 150px;
+            height: 50px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: lightseagreen;
+            color: white;
+            font-weight: bold;
+            font-size: 1.23rem;
+        }
+     .button:active{
+            background-color: rgb(39, 73, 72);
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="container">
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div class="box">5</div>
+            <div class="box">6</div>
+            <div class="box">7</div>
+            <div class="box">8</div>
+            <div class="box">9</div>
+        </div>
+        <button class="button">Rearrange</button>
+    </div>
+</body>
+<script>
+    const boxCollection=document.querySelectorAll(".box")
+    const position=[
+    { x: 0, y: 0 },
+    { x: 33, y: 0 },
+    { x: 66, y: 0 },
+    { x: 0, y: 33 },
+    { x: 33, y: 33 },
+    { x: 66, y: 33 },
+    { x: 0, y: 66 },
+    { x: 33, y: 66 },
+    { x: 66, y: 66 },
+    ]
+    boxCollection.forEach((child,index)=>{
+        child.style.left=`${position[index].x}%`
+        child.style.top=`${position[index].y}%`
+    })
+    document.querySelector(".button").addEventListener("click", reshuffle)
+
+    function reshuffle(){ 
+      let unique= new Set()
+      while(unique.size<9){
+        unique.add(Math.floor(Math.random() * 9))
+      }
+    let reshuffleIndex=[...unique]
+    let reshuffledPosition=reshuffleIndex.map(value=>position[value])
+        boxCollection.forEach((child,index)=>{
+        child.style.left=`${reshuffledPosition[index].x}%`
+        child.style.top=`${reshuffledPosition[index].y}%`
+    })
+    }
+  
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            height: 100px;
+            aspect-ratio: 1;
+            display: inline-block;
+        }
+        #box1{
+            background-color: red;
+        }
+        #box2{
+            background-color: pink;
+        }
+        #box3{
+            background-color: lightseagreen;
+        }
+        #box4{
+            background-color: yellow;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span  id="box1" class="box"></span>
+        <span  id="box2" class="box"></span>
+        <span  id="box3" class="box"></span>
+        <span  id="box4" class="box"></span>
+    </div>
+    
+</body>
+<script>
+    const button=document.querySelectorAll(".box")
+    console.log(button)
+    button.forEach( (item)=>{
+       item.addEventListener("click", (e)=>{
+        const backgroundColor = window.getComputedStyle(e.target).getPropertyValue("background-color");
+        const Color = window.getComputedStyle(e.target).getPropertyValue("color");
+        const box_shadow = window.getComputedStyle(e.target).getPropertyValue("box-shadow");
+        const height = window.getComputedStyle(e.target).getPropertyValue("height");
+        const width = window.getComputedStyle(e.target).getPropertyValue("width");
+        // syntax: window.getComputedStyle(element).getPropertyValue(value) 
+                // Set the background color of the body to the clicked element's background color
+                //this window.getComputedstyle(e.target).getpropertyvalue("valuename") gets the property value like almost all the css properties value like color, backgroundcolor, boxshadow, filter,textaling and all
+        
+                console.log(`backgroundColor is ${backgroundColor} \n color${box_shadow}\n height is ${height}\n width is ${width   }`)
+        document.body.style.backgroundColor=backgroundColor;
+       })
+    })
+</script>
+</html>

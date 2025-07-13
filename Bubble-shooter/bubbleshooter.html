@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bubble shooter</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html,body{
+         height: 100%;
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         background-color: #9AB89B;
+         }
+         .container{
+            position: relative;
+            width: 1150px;
+            height: 700px;
+            border-radius: 20px;
+         }
+         .scorebox{
+            width: 100%;
+            height: 70px;
+            padding-inline: 20px;
+            border-radius: 20px 20px 0 0;
+            background-color: #476847;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+         }
+         .scorebox >.box{
+         display: flex;
+         align-items: center;
+         gap: 5px;
+         color: aliceblue;
+         font-size: 1.3rem;
+         text-transform: capitalize;
+         }
+         .bubblebox{
+            width: 100%;
+            height: calc(100%  -  70px);
+            padding: 10px;
+            color: aliceblue;
+            background-color: #FFFFFF;
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+         }
+         .bubblebox>.bubble{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 66px;
+            aspect-ratio: 1;
+            margin: 10px;
+            border-radius: 50%;
+            background-color: #476847;
+         }
+        .bubblebox>.bubble:hover{
+             background-color: #395239;
+        }
+         .bubblebox>.bubble:active{
+            background-color: white;
+         }
+         .scoreDisplay, .temp{
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background-color: #64a86b;
+            color: aliceblue;
+            font-size: 1.78rem;
+            font-weight: bold;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 300px;
+            z-index: 5;
+            padding: 10px;
+         }
+         .container>.temp{
+            padding:20px;
+            display: flex;
+         }
+</style>
+</head>
+<body>
+   
+    <div class="container">
+        <div class="audio">
+            <audio preload="on" class="error" src="music/error">error</audio>
+            <audio preload="on"  class="hit" src="music/hit">hit</audio>
+            <audio preload="on" class="gameOver" src="music/gameover">gameover</audio>
+        </div>
+        <div class="scorebox">
+            <div class="hit box">
+                <span>hit:</span>
+                <span class="hitTarget"></span>
+            </div>
+            <div class="timerbox box">
+                <span>timer:</span>
+                <span class="timer">0</span>
+            </div>
+            <div class=" box">
+                <span>score:</span>
+                <span class="score">0</span>
+            </div>
+
+        </div>
+
+        <div class="bubblebox">
+        </div>
+        <div class="scoreDisplay">
+
+        </div>
+    </div>
+    
+</body>
+<script>
+    const container=document.querySelector(".container")
+const bubblebox=document.querySelector(".bubblebox")
+const hitTarget=document.querySelector(".hitTarget")
+const timer=document.querySelector(".timer")
+const score=document.querySelector(".score")
+const display=document.querySelector(".scoreDisplay")
+let time=60
+let flag=true
+let keyPressCount=1
+timer.textContent=time
+score.textContent=0
+let num=0
+
+const hitGenerate=()=>{
+hitTarget.textContent=Math.floor(Math.random()* 9 +1)
+}
+
+const createBubble=()=>{
+    for(let i=1;i<=91;i++){
+      const bubble=document.createElement("span")
+      bubble.className="bubble"
+      bubble.textContent=Math.floor(Math.random()* 10 +1)
+      bubblebox.append(bubble)
+    }
+}
+
+
+
+function setTimer(){
+    let timerId=setInterval(() => {
+    if(time>1){
+    time--;
+    timer.textContent=time
+}
+else {
+    time--
+    clearInterval(timerId)
+    timer.textContent=time
+    document.querySelector(".gameOver").play();
+    display.style.display="flex"
+     display.textContent=`Game Over\n The Final Score is ${score.textContent}`
+    bubblebox.style.filter='blur(3px)'
+}
+}, 1000);
+}
+
+ function addScore(){
+bubblebox.addEventListener("click", (e)=>{
+    
+    if(time>0){
+    if(e.target.tagName=="SPAN" && e.target.textContent==hitTarget.textContent){
+        document.querySelector(".hit").play();
+        num+=1
+        score.textContent=num// adding score
+        bubblebox.innerHTML=''
+        createBubble()  
+        hitGenerate()
+    }
+    else{
+        document.querySelector(".error").play();
+    }
+   }
+})
+}
+function addScoreWithKeyboard(){
+    document.addEventListener("keydown", (e)=>{
+    if(time>0 && keyPressCount<=10){
+    if(e.key==hitTarget.textContent){
+        document.querySelector(".hit").play();
+        num+=1
+        score.textContent=num// adding score
+        bubblebox.innerHTML=''
+        createBubble()  
+        hitGenerate()
+        keyPressCount++
+    }
+    else{
+       if(num>0){
+        num-=1
+        score.textContent=num
+       }
+       keyPressCount++
+    }
+    
+   }
+})
+}
+const temp=document.createElement("span")
+temp.className="temp"
+temp.textContent="Note: keyboard can only be used 10 times to shoot bubble and there is score reduction for each wrong key pressed to shoot bubble"
+container.append(temp)
+
+setTimeout(() => {
+    temp.style.display="none"
+    setTimer()
+addScore()
+createBubble()
+hitGenerate()
+addScoreWithKeyboard()
+}, 4000);
+
+
+</script>
+</html>

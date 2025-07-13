@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Site</title>
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/signup.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body class="bg-primary dark:bg-dark-accent">
+    <form id="signupForm">
+        <h2 class="font-semibold" >Sign Up</h2>
+        
+        <div class="formgroup relative">
+            <label for="username">Username</label>
+            <input type="text" id="username" >
+            <span class="errormsg"></span>
+            <div class="form-error-msg absolute  text-red-600 font-medium left-2 top-[75%]"></div>
+        </div>
+
+        <div class="formgroup">
+            <label for="gmail">Email</label>
+            <input type="gmail" id="gmail" >
+            <span class="errormsg"></span>
+            
+        </div>
+
+        <div class="formgroup">
+            <label for="password">Password</label>
+            <input type="password" id="password" >
+            <span class="errormsg"></span>
+            <i class="fa-solid fa-eye"></i>
+        </div>
+
+        <div class="formgroup">
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" id="confirmpassword" >
+            <span class="errormsg"></span>
+            
+        </div>
+
+        <button class="sign-up" type="submit">Sign Up
+        </button>
+
+        <p class="signup">Already have an account? <a href="login.html">Login</a></p>
+    </form>
+    <script src="/assets/js/signup.js"></script>
+</body>
+</html>

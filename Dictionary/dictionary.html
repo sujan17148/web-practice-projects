@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <style>
+        :root{
+            ---primarycolor:#ff4500;
+            ---secondarycolor:#4b0082;
+            ---tertiarycolor:#fff5ee;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{ 
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(---tertiarycolor);
+            color: var(---tertiarycolor);
+        }
+        #main{
+            width: 450px;
+            background-color: aliceblue;
+            padding: 20px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+
+        }
+        .box{
+            flex: 1 0 100%;
+            align-self: start;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+        gap: 15px;
+        margin-bottom: 50px;
+        }
+    
+        .box > input{
+            height: 100%;
+            aspect-ratio: 5.5;
+       display: inline-block;
+       border: none;
+       background-color: aliceblue;
+       color: #414141;
+       outline: none;
+       padding: 5px;
+       font-size: 1.01rem;
+       border-bottom: 2px solid #414141;
+        }
+        .box > ::placeholder{
+            color: #414141;
+            font-size: 1.01rem;
+        }
+        .box > .search{
+            display: inline-block;
+            height: 100%;
+            width: 110px;
+            padding: 5px;
+            border: none;
+            background-color: var(---secondarycolor);
+            border-radius: 5px;
+            color: var(---tertiarycolor);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transform: 0.2s linear;
+
+        }
+        .box > .search:active{
+            background-color: lightgrey;
+        }
+        .contentBox{
+            flex: 1 0 100%;
+            min-height: 150px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: start;
+            color: #414141;
+        }
+        .wrongInfo{
+           color: #414141;
+        }
+        .wordBox{
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          font-weight: bold;
+          font-size: 1.23rem;
+          padding: 5px 15px 0 15px;
+          gap: 10px;
+          margin-bottom: 15px;
+        }
+        .wordBox span:first-child{
+            font-size: 2.5rem;
+        }
+        .partSpeech{
+            flex: 1 0 100%;
+            padding-inline: 15px;
+            font-size: 1.23rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+     .meaning{
+        flex: 1 0 100%;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding-inline: 25px;
+    }
+    #sound{
+        padding: 5px;
+        height: 45px;
+        aspect-ratio: 1;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    #sound:hover, #sound:active{
+        background-color: lightgray;
+    }
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="box">
+            <input type="text"  placeholder="Enter the word here" name="" id="">
+            <button class="search">search</button>
+        </div>
+        <div class="contentBox"></div>
+    </div>
+</body>
+<script>
+    let word=document.querySelector('.box > input')
+    let contentBox=document.querySelector(".contentBox")
+
+const fetchWord=()=>{
+let dictionaryUrl=`https://api.dictionaryapi.dev/api/v2/entries/en/${word.value}`
+
+    let xhr=new XMLHttpRequest()
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState===4){
+            if(xhr.status===200){
+                let response=JSON.parse(xhr.responseText)
+                    showMeaning(response)
+                
+            }
+            else{
+                contentBox.innerHTML=`<h1 class="wrongInfo">please Enter a Correct word</h1>`
+            }
+        }
+    }
+    xhr.open("GET", dictionaryUrl)
+    xhr.send()
+    word.value=""
+}
+function showMeaning(response){
+    contentBox.innerHTML=""
+    let wordBox = document.createElement("div");
+    wordBox.className = "wordBox";
+    
+    let partSpeech=document.createElement('div')
+    partSpeech.className="partSpeech"
+
+
+    let word = document.createElement("span");
+    word.textContent = response[0].word;
+
+    let sound = document.createElement("span");
+    sound.textContent = "🔊"; 
+    sound.id="sound"
+    sound.addEventListener("click", (e)=>{
+        let audioUrl=response[0].phonetics[0].audio
+        if(audioUrl){
+            let audio=new Audio(audioUrl)
+            audio.play()
+        }
+        else{
+            console.log("no audio available")
+        }
+    })
+
+    let verb=document.createElement("span")
+    verb.textContent=response[0].meanings[0].partOfSpeech
+
+let meaning=document.createElement("div")
+meaning.className="meaning"
+meaning.textContent=`Meaning:${response[0].meanings[0].definitions[0].definition}`
+
+
+    wordBox.append(word);
+    wordBox.append(sound);
+    partSpeech.append(verb)
+    contentBox.append(wordBox);
+    contentBox.append(partSpeech)
+    contentBox.append(meaning)
+    
+}
+
+document.querySelector(".search").addEventListener("click", fetchWord)
+document.addEventListener("keydown", (e)=>{
+    if(e.key.toLocaleLowerCase()==="enter"){
+    fetchWord()
+}
+}
+)
+document.addEventListener("keydown", (e)=>{
+    if(e.key==="/"){
+        word.focus()
+    }
+})
+
+</script>
+</html>

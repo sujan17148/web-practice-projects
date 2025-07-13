@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+</head>
+<body >
+    <nav class=" navbar h-14  flex justify-between items-center bg-primary dark:bg-dark-primary dark:text-dark-textColor  px-3 lg:px-10 ">
+        <div class="topleft flex items-center md:gap-8  lg:gap-15  ">
+            <a href="/pages/index.html"><img class=" h-16" src="/assets/images/logo.png" alt=""></a>
+            <div class="links font-medium  text-lg  hidden md:flex items-center  gap-6  ">
+                <a class=" hover:text-secondary dark:hover:text-dark-secondary " href="/pages/index.html">Home</a>
+                <a class=" hover:text-secondary dark:hover:text-dark-secondary " href="/pages/popular.html">Popular</a>
+                <a class=" hover:text-secondary dark:hover:text-dark-secondary " href="/pages/movies.html">Movies</a>
+                <a class=" hover:text-secondary dark:hover:text-dark-secondary  random-anime" >Random</a>
+                <a class=" hover:text-secondary dark:hover:text-dark-secondary " href="/pages/favourites.html">Favourites</a>
+            </div>
+        </div>
+        <div class="topright flex items-center gap-2 lg:gap-3  ">
+            <div class="mobilesearch lg:hidden ">
+                  <i class="  fa-solid fa-magnifying-glass pointer font-medium p-2.5  text-lg   rounded-full "></i>
+                 <div class="search hidden absolute top-11 text-primary dark:text-dark-primary font-medium right-2 rounded-md  px-2 my-auto dark:bg-dark-secondary bg-secondary z-20">
+                    <input type="text" name="" id="mobilesearch" placeholder="search"
+                    class=" searchbar px-2  py-2.5 placeholder:text-primary  dark:placeholder:text-dark-primary  outline-0     ">
+                    <i class="fa-solid fa-x "></i>
+                 </div>
+                </div>
+    
+                <div class="toggle-button h-10 w-10  flex  justify-center items-center dark:bg-primary bg-textColor rounded-full relative transition-transform duration-300 ease-linear">
+                    <img src="/assets/images/sun1.svg" class="h-[65%] brightness-0 invert-100 dark:invert-0 w-[65%]" alt="toggle-icon">
+                </div>
+            <div class="searchbox hidden  relative lg:flex items-center  bg-secondary dark:bg-dark-secondary text-primary dark:text-dark-primary rounded-md ">
+                <input type="text" name="" id="largeScreenSearch" placeholder="search"
+                    class=" search px-2  py-2.5 rounded-l-md outline-0 ">
+                <i class="fa-solid fa-magnifying-glass pointer font-medium  text-primary dark:text-dark-primary placeholder:text-primary  dark:placeholder:text-dark-primary text-lg inline-block py-[13px] px-2 rounded-r-md "></i>
+                <div class="recomendedsearch text-primary  dark:text-dark-primary font-medium transition-all duration-200 ease-linear text-base absolute w-full rounded-md space-y-3 top-[105%] left-0 bg-secondary dark:bg-dark-secondary z-100">
+                   <!-- recommended searches here -->
+                </div>
+            </div>
+            <div class="user-dashboard relative">
+                <a href="/pages/login.html"
+               id="pc-login" class=" hidden login bg-secondary dark:bg-dark-secondary font-medium text-primary dark:text-dark-primary hover:scale-110 custom-hover  text-md pointer rounded-md py-2.5  px-6 md:flex gap-2 justify-center items-center">
+                <i class="fa-solid fa-user"></i>
+                Login
+            </a>
+            <div class="user-profile hidden absolute top-full z-9 right-0 rounded-md w-screen mx-3 sm:mx-auto max-w-[500px] bg-primary dark:bg-dark-primary ">
+                <span class="watch-later block p-3 border-b-2 border-b-gray-400 pointer ">watch Later</span>
+                <span class="block favourites p-3 border-b-2 border-b-gray-400 ">Favourites</span>
+                <a class=" logout block p-3 pointer"> <i class="fa-solid fa-right-from-bracket mr-1"></i>Log out</a>
+            </div>
+            </div>
+            <i class="fa-solid fa-bars text-xl  md:!hidden"></i>
+        </div>
+    
+        <div class="mobilemenu absolute h-screen w-screen top-0 right-full z-20 bg-secondary dark:bg-dark-secondary px-3 pt-5 transition-all  duration-300 ease-linear  md:hidden">
+            <div class="top flex items-center justify-between  border-b-2 border-b-amber-200 pb-4  ">
+                <div class="mobile-user-dashboard relative">
+                <a id="mobile-login" href="/pages/login.html"
+                    class="login bg-primary dark:bg-dark-primary  text-md font-medium pointer rounded-md py-2.5 px-6 flex gap-2 justify-center items-center hover:scale-110 active:scale-95 transition-all duration-300 ease-linear ">
+                    <i class="fa-solid fa-user"></i>
+                    Login
+                </a>
+                <div class="mobile-user-profile hidden absolute top-full z-9 left-0 rounded-md w-screen mx-3 sm:mx-auto max-w-[500px] bg-primary dark:bg-dark-primary ">
+                    <span class="watch-later block p-3 border-b-2 border-b-gray-400 pointer ">watch Later</span>
+                    <span class="block favourites p-3 border-b-2 border-b-gray-400 ">Favourites</span>
+                    <a class=" logout block p-3 pointer"> <i class="fa-solid fa-right-from-bracket mr-1"></i>Log out</a>
+                </div>
+                </div>
+                <i class="fa-solid fa-x text-white dark:text-dark-accent "></i>
+            </div>
+            <div class="links  text-primary  dark:text-dark-primary text-md font-medium space-y-4  pt-3 px-3  items-center gap-2.5 ">
+                <a class="block hover:text-textColor dark:hover:text-dark-textColor " href="/pages/index.html">Home</a>
+                <a class="block hover:text-textColor dark:hover:text-dark-textColor " href="/pages/popular.html">Popular</a>
+                <a class="block hover:text-textColor dark:hover:text-dark-textColor " href="/pages/movies.html">Movies</a>
+                <a class="block hover:text-secondary dark:hover:text-dark-secondary  random-anime" >Random</a>
+                <a class="block hover:text-textColor dark:hover:text-dark-textColor " href="/pages/favourites.html">Favourites</a>
+            </div>
+    
+        </div>
+    </nav>
+
+
+
+    <div class="logoutMsg hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-y-4 flex-col justify-center items-center py-3 text-primary dark:text-dark-primary font-medium z-50 bg-secondary dark:bg-dark-secondary rounded-md w-[calc(100vw-12px)] sm:w-96 lg:w-[650px] pt-2 text-center shadow-lg">
+        <i class="fa-solid fa-x text-lg block absolute top-2 right-2 cursor-pointer hover:text-red-500 transition-colors" onclick="cancelLogout()"></i>
+        <span class="text-base sm:text-lg font-semibold flex justify-center items-center p-3 sm:p-4">Are you sure you want to Logout?</span>
+        <div class="cta-buttons w-full flex px-2 sm:px-4 gap-2 sm:gap-3 mt-1 sm:mt-2 pb-2">
+          <button onclick="cancelLogout()" class="bg-primary rounded-md text-textColor py-2 sm:py-3 basis-1/2 hover:scale-110 active:scale-95 transition-transform duration-300 ease-linear">No</button>
+          <button onclick="confirmLogout()" class="bg-green-500 rounded-md py-2 sm:py-3 basis-1/2 hover:scale-110 active:scale-95 transition-transform duration-300 ease-linear">Yes</button>
+        </div>
+      </div>
+      
+
+      <div class="watchList-container hidden bg-gray-300  dark:bg-gray-800 absolute rounded-md top-1/2  overflow-x-hidden left-1/2 z-5 -translate-1/2 h-full max-h-[800px] overflow-y-auto w-[calc(100vw-12px)]  lg:w-[1000px] aspect-[16/9]">
+        <i class="fa-solid fa-x custom-hover  text-textColor dark:text-dark-textColor text-lg block z-50 absolute top-2 right-2 cursor-pointer" onclick="hideWacthList()"></i>
+        <div class="watchlist h-full w-full">
+            <div class="pt-3 px-3 pb-2 z-10">
+                <h1 class="text-3xl text-secondary dark:text-dark-secondary font-medium mb-3">Watch Later Anime</h1>
+            </div>
+            <div class="card-container w-full flex flex-wrap gap-y-4 px-3 pt-2 pb-6">
+                <!-- will contain watchlater anime -->
+            </div>
+        </div>
+        <h1 class="no-watch-later font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary dark:text-dark-textColor absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+            Nothing in your watch later — Time to add some epic shows!🎬
+          </h1>
+    </div>
+
+    <div class="favourites-container overflow-x-hidden  hidden z-20 bg-gray-300 dark:bg-gray-800 absolute rounded-md top-1/2 left-1/2 -translate-1/2 h-full max-h-[800px] overflow-y-auto w-[calc(100vw-12px)] max-w-[1000px] aspect-[16/9]">
+        <i class="fa-solid fa-x text-textColor dark:text-dark-textColor z-50 custom-hover text-lg block absolute top-2 right-2 cursor-pointer" onclick="hideFavourites()"></i>
+        <div class="favourites h-full w-full">
+            <div class="pt-3 px-3 pb-2 z-10">
+                <h1 class="text-3xl text-secondary dark:text-dark-secondary font-semibold mb-3">Favourite Anime</h1>
+            </div>
+            <div class="card-container w-full flex flex-wrap gap-y-4 px-3 pt-2 pb-6">
+                <!-- will contain favourite anime -->
+            </div>
+        </div>
+        <h1 class="no-favourites font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary dark:text-dark-textColor absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">No favorites yet — Time to discover your next obsession! 🌟</h1>
+    </div>
+
+  <div class="top-up-messages">
+    <div class="favourite-msg border-2 border-secondary dark:border-dark-secondary  z-50 transition-all duration-500 ease-linear fixed bottom-14 -right-full w-40 lg:w-60 aspect-[16/9] bg-primary dark:bg-dark-accent text-lg font-medium lg:font-semibold text-textColor dark:text-dark-textColor rounded-md flex items-center justify-center px-2">
+        <span class="hover:text-secondary dark:hover:text-dark-secondary">Anime added to Favourite List</span>
+    </div>
+
+    <div class="watch-later-msg z-50 border-2 border-secondary dark:border-dark-secondary transition-all duration-500 ease-linear  fixed bottom-14 -right-full w-40 lg:w-60 aspect-[16/9] bg-primary dark:bg-dark-accent text-lg font-medium lg:font-semibold text-textColor dark:text-dark-textColor rounded-md flex items-center justify-center px-2">
+        <span class="hover:text-secondary dark:hover:text-dark-secondary">Anime added to watch Later List</span>
+    </div>
+
+    <div class="favourite-remove-msg border-2 border-secondary dark:border-dark-secondary z-50 transition-all duration-500 ease-linear  fixed bottom-14 -right-full w-40 lg:w-60 aspect-[16/9] bg-primary dark:bg-dark-accent text-lg font-medium lg:font-semibold text-textColor dark:text-dark-textColor rounded-md flex items-center justify-center px-2">
+        <span class="hover:text-secondary dark:hover:text-dark-secondary">Anime removed from favourite List</span>
+    </div>
+    <div class="watch-later-remove-msg z-50 border-2 border-secondary dark:border-dark-secondary transition-all duration-500 ease-linear  fixed bottom-14 -right-full w-40 lg:w-60 aspect-[16/9] bg-primary dark:bg-dark-accent text-lg font-medium lg:font-semibold text-textColor dark:text-dark-textColor rounded-md flex items-center justify-center px-2">
+        <span class="hover:text-secondary dark:hover:text-dark-secondary">Anime removed watch Later List</span>
+    </div>
+  </div>
+
+
+
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/show-watchlist.js"></script>
+    <script src="/assets/js/show-favourites.js"></script>
+
+</body>
+</html>

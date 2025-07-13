@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic tac toe</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    flex-direction: column;    
+    }
+    .main{
+        position: relative;
+        width: 380px;
+        background-color: aliceblue;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .container{
+        aspect-ratio: 1;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .container>.button{
+        flex-basis: calc(33% - 10px);
+        aspect-ratio: 1;
+    border: none;
+        background-color: #64a86b;
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .reset{
+        width: 100%;
+        height: 50px;
+        border: none;
+        background-color: #64a86b;
+        color: aliceblue;
+        font-weight: bold;
+        font-size: 1.35rem;
+        border-radius: 5px;
+        padding-inline: 10px;
+        text-align: center;
+    }
+    .displayMessage{
+        display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    background-color:#64a86b;
+    width: 100%;
+    height: 100px;
+    border-radius: 7px;
+    }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container"></div> 
+        <button class="reset">Reset</button>
+        <div class="displayMessage"></div>
+    </div>
+</body>
+<script>
+    const container=document.querySelector(".container")
+    const displayMessage=document.querySelector(".displayMessage")
+    const winPatern=[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ]
+    let moveCount=0
+    let playerX=[]
+    let player0=[]
+    let turn="x"
+    function createBox(){
+        for(let i=0;i<9;i++){
+            let button=document.createElement("button")
+            button.className="button"
+            container.append(button)
+        }
+    }
+   function addSymbol(){
+     container.addEventListener('click', (e)=>{
+     if(e.target.tagName=="BUTTON" && turn=="x"){
+        e.target.textContent="x"
+        playerX.push(Array.from(container.children).indexOf(e.target))
+        turn ="0"
+        e.target.disabled="true"
+        moveCount++
+        checkWinner()
+     }
+     else  if(e.target.tagName=="BUTTON" && turn=="0"){
+        e.target.textContent="0"
+        player0.push(Array.from(container.children).indexOf(e.target))
+        turn="x"
+        e.target.disabled="true"
+        moveCount++
+        checkWinner()
+     }
+     
+
+     })
+   }
+function reset(){
+   document.querySelector(".reset").addEventListener("click",(e)=>{
+    turn ="x"
+    moveCount=0;
+    player0=[]
+    playerX=[]
+    displayMessage.style.display="none"
+    container.innerHTML=""
+    Array.from(container.children).forEach(box=>box.textContent="") // 
+    createBox()
+   })
+}
+function checkWinner(){
+    let winnerfound=null
+winPatern.forEach(pattern=>{
+    let countX=0
+    let count0=0
+     pattern.forEach(element=>{
+        if(playerX.includes(element)){
+            countX++;
+            if(countX===3){
+             displayMessage.textContent=`player x is winner`
+             displayMessage.style.display="block"
+             disableAfterWin()
+             winnerfound=true
+            }
+        }
+        else if(player0.includes(element)){
+            count0++
+            if(count0===3){
+             displayMessage.textContent=`player 0 is winner`
+             displayMessage.style.display="block"
+             disableAfterWin()
+             winnerfound=true
+            }
+        }
+       
+    
+    })
+
+   
+
+})
+if(moveCount==9 && !winnerfound){
+            displayMessage.textContent=`oh its a draw`
+             displayMessage.style.display="block"
+             disableAfterWin()
+        }
+}
+
+function disableAfterWin(){
+    Array.from(container.children).forEach(box=>box.disabled="true")
+}
+reset()
+checkWinner()
+   addSymbol()
+    createBox()
+
+</script>
+</html>

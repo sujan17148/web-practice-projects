@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/images/logo.png" type="image/x-icon">
+
+</head>
+<body class="bg-primary dark:bg-dark-primary">
+    <header></header>
+ 
+    <div class="main-section min-h-screen h-fit">
+    <section id="hero-section" class="mt-4 mx-3  lg:mx-10 lg:grid grid-cols-6 grid-rows-7 gap-2.5">
+        <!-- Favourite Anime Section -->
+        <div class="favourite-section rounded-lg p-4 shadow-md min-h-[300px] h-fit relative col-span-4 row-span-4">
+          <h1 class="text-2xl text-secondary dark:text-dark-secondary font-semibold mb-2">Your Favourite Anime</h1>
+          <div class="favourite-anime-cards flex flex-wrap gap-2.5 w-full min-h-[250px]">
+            <!-- Cards will be inserted dynamically -->
+          </div>
+          <div class="no-favourites text-2xl text-secondary dark:text-dark-secondary font-semibold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">No Favourites Anime yet</div>
+        </div>
+      
+         <!-- Watch Later Section -->
+         <div class="watch-later-section rounded-lg  shadow-md relative min-h-[300px] h-fit col-span-4 row-span-3 row-start-5">
+            <h1 class="text-2xl text-secondary dark:text-dark-secondary font-semibold mb-2">Watch later Animes</h1>
+            <div class="watch-later-cards w-full">
+              <!-- Cards will be inserted dynamically -->
+            </div>
+            <div class="no-watch-later text-2xl text-secondary dark:text-dark-secondary font-semibold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">No Watch Later Anime yet</div>
+          </div>
+        <!-- Popular Anime Section -->
+        <div class="popular-section rounded-lg p-4 shadow-md min-h-[300px] h-fit relative col-span-2 row-span-7 col-start-5">
+          <h1 class="text-2xl text-secondary dark:text-dark-secondary font-semibold mb-2">Popular Anime</h1>
+          <div class="popular-cards flex flex-wrap gap-2.5 w-full  h-[calc(100%-40px)] overflow-y-auto">
+            <!-- Cards will be inserted dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <div class=" w-screen text-center absolute top-1/2 left-1/2 -translate-1/2 notLoggedIn-msg hidden text-secondary dark:text-dark-secondary font-semibold text-xl flex-col  justify-center  items-center  ">
+        <h1>Login to unlock your personalized favorites and watch later list!</h1>
+        <a href="/pages/login.html"
+         class="login bg-secondary dark:bg-dark-secondary inline-block font-medium text-primary dark:text-dark-primary hover:scale-110 custom-hover mt-3  text-md pointer rounded-md py-3 px-12 ">
+         <i class="fa-solid fa-user"></i>
+         Login
+     </a>
+      </div>
+    </div>
+
+<!-- ==============footerSection==================== -->
+<footer></footer>
+    <script src="/assets/js/favourites.js"></script>
+    
+</body>
+</html> 

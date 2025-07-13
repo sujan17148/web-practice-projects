@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Sicssor</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .container{
+            width: 500px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: red;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .box{
+            width: 100%;
+            height: 60%;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px;
+
+        }
+        .button{
+            flex-basis: calc(33% - 10px);
+            aspect-ratio: 1;
+            background-color: #476847;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+        }
+        .reset{
+            display: inline-block;
+            border: none;
+            background-color: #476847;
+            width: 100%;
+            height: 50px;
+            margin-top: 10px;
+            border-radius: 10px;
+            color: aliceblue;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rock Paper Sicssor</h1>
+        <div class="box">
+            <button class="button">rock</button>
+            <button class="button">paper</button>
+            <button class="button">scissor</button>
+        </div>
+        <div class="score">
+            <div class="playerScore">playerScore: <span class="pScore">0</span></div>
+            <div class="computerScore">ComputerScore: <Scorespan class="cScore">0</Scorespan></div>
+        </div>
+        <button class="reset">Reset</button>
+    </div>
+</body>
+<script>
+    const box=document.querySelector(".box")
+    const cScore=document.querySelector(".cScore")
+    const pScore=document.querySelector(".pScore")
+    const reset=document.querySelector(".reset")
+    let computerScore=0
+    let playerScore=0
+    let computerChoice=""
+    let playerChoice=""
+    function player(){
+        box.addEventListener("click", (e)=>{
+            if(e.target.tagName=="BUTTON"){
+                playerChoice= e.target.textContent.toLowerCase()
+                console.log(playerChoice)
+                computer();
+                checkWinner();
+            }
+        })
+    }
+function computer(){
+    const random=["Rock", "paper", "scissor"]
+    computerChoice=random[Math.floor(Math.random()* 3)].toLowerCase()
+    console.log(computerChoice)
+}
+   function checkWinner(){
+    if(playerChoice==computerChoice ){
+        console.log("draw")
+    }
+    else if(playerChoice=="rock" && computerChoice=="paper"){
+        console.log("compueter winner")
+        computerScore+=1
+        cScore.textContent=computerScore
+
+    }
+    else if(playerChoice=="rock" && computerChoice=="scissor"){
+        console.log("player winner")
+        playerScore+=1
+        pScore.textContent=playerScore
+    }
+    else if(playerChoice=="paper" && computerChoice=="rock"){
+        console.log("player winner")
+        playerScore+=1
+        pScore.textContent=playerScore
+    }
+    else if(playerChoice=="paper" && computerChoice=="scissor"){
+        console.log("compueter winner")
+        computerScore+=1
+        cScore.textContent=computerScore
+    }
+    else if(playerChoice=="scissor" && computerChoice=="paper"){
+        console.log("player winner")
+        playerScore+=1
+        pScore.textContent=playerScore
+    }
+    else if(playerChoice=="scissor" && computerChoice=="rock"){
+        console.log("compueter winner")
+        computerScore+=1
+        cScore.textContent=computerScore
+    }
+   }
+   function resetting(){
+reset.addEventListener("click",  (e)=>{
+    pScore.textContent=0
+    cScore.textContent=0
+})
+   }
+
+player()
+resetting()
+
+
+</script>
+
+<script>
+
+function checkWinner() {
+    const outcomes = {
+    rock: { rock: 'draw', paper: 'computer', scissor: 'player' },
+    paper: { rock: 'player', paper: 'draw', scissor: 'computer' },
+    scissor: { rock: 'computer', paper: 'player', scissor: 'draw' },
+};
+
+    const result = outcomes[playerChoice][computerChoice];
+    
+    if (result === 'draw') {
+        console.log("It's a draw!");
+    } else if (result === 'player') {
+        console.log("Player wins!");
+        playerScore++;
+        pScore.textContent = playerScore;
+    } else {
+        console.log("Computer wins!");
+        computerScore++;
+        cScore.textContent = computerScore;
+    }
+}
+// a littledynamic approach to reduce the lines of code and increase redablity
+</script>
+</html>
