@@ -42,6 +42,4 @@ To view any project locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/web-practice-projects.git
-
-# Open a project folder and launch index.html in browser
+git clone https://github.com/sujan17148/web-practice-projects.git
